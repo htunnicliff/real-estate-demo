@@ -11,13 +11,13 @@ export type PageHeaderProps = {
  */
 export function PageHeader({ className, title }: PageHeaderProps) {
   return (
-    <div
+    <header
       className={clsx(
         "bg-side-gray text-base md:text-2xl px-16 py-8 font-semibold",
         className
       )}
     >
-      {title}
-    </div>
+      <h1>{title}</h1>
+    </header>
   );
 }
