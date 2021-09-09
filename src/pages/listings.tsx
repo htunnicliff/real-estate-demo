@@ -1,28 +1,32 @@
 import clsx from "clsx";
 import { ListingCard } from "../components/ListingCard";
+import Head from "next/head";
 import { usePropertyListings } from "../data/property-listings";
+import { PageHeader } from "@/components/PageHeader";
+import { ListingsGrid } from "@/components/ListingsGrid";
 
 export default function PropertyListingsPage() {
-  const { data: listings } = usePropertyListings();
+  // Load property listings
+  const { data: listings, error } = usePropertyListings();
 
   return (
     <div className="text-side-black">
-      <div className="bg-side-gray text-2xl px-16 py-8 font-semibold sticky top-0 z-10">
-        Property Listings
-      </div>
-      <div
-        className={clsx(
-          "py-9 px-16",
-          "grid gap-x-14 gap-y-9",
-          "max-w-screen-2xl mx-auto",
-          "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-        )}
-      >
-        {listings &&
-          listings.map((listing) => {
-            return <ListingCard key={listing.mlsId} listing={listing} />;
-          })}
-      </div>
+      <Head>
+        <title>Property Listings</title>
+      </Head>
+
+      <PageHeader title="Property Listings" className="sticky top-0 z-10" />
+
+      {error ? (
+        <p>An error occured: {error}</p>
+      ) : listings ? (
+        <ListingsGrid
+          listings={listings}
+          className="max-w-screen-2xl mx-auto"
+        />
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 }
