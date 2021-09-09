@@ -5,10 +5,11 @@ import axios from "axios";
  *
  * https://docs.simplyrets.com/api/
  */
-export const simplyRETSAPI = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_RETS_BASE_URL,
-  auth: {
-    username: process.env.NEXT_PUBLIC_RETS_USERNAME,
-    password: process.env.NEXT_PUBLIC_RETS_PASSWORD,
-  },
-});
+export const simplyRETSAPI = () =>
+  axios.create({
+    baseURL: process.env.NEXT_PUBLIC_RETS_BASE_URL,
+    auth: {
+      username: "simplyrets",
+      password: "simplyrets",
+    },
+  });
