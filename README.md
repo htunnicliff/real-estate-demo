@@ -24,6 +24,8 @@ Since the Figma mocks are using a slightly different spacing scale that the defa
 
 For the "favorites" feature, you may notice my implementation somewhat naively sets a key value pair to `MLSID:true` for each item being favorited, and removes it when they are un-favorited. With more time, I would likely keep an array of IDs that were favorited within a single local storage key.
 
+I generated the typings for the SimplyRETS API (found in [`types/simply-rets.d.ts`](./types/simply-rets.d.ts)) using `dtsgenerator` and the OpenAPI schema provided by their API docs. It isn't the cleanest schema, which resulted in me using TypeScript's `Required<T>` generic to enforce some types correctly. The script used to generate these types can be found in [`bin/get-simply-rets-types.js`](./bin/get-simply-rets-types.js).
+
 ### Items I Wanted To Complete
 
 - Caching API requests using local storage (I would have added a custom SWR cache provider to read/write from local storage).
